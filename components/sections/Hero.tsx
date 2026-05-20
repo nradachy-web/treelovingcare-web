@@ -3,7 +3,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Primitives";
 import { PhoneIcon, ShieldCheck, Star } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
-import { credentials, site } from "@/lib/site";
+import { credentials, googleRating, site } from "@/lib/site";
 import { img } from "@/lib/images";
 
 export function Hero() {
@@ -72,7 +72,7 @@ export function Hero() {
                     <Star key={i} className="size-4 text-leaf-bright" />
                   ))}
                 </span>
-                Trusted by Wisconsin homeowners
+                {googleRating.score} on Google · {googleRating.count}+ reviews
               </span>
             </div>
           </Reveal>

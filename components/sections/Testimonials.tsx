@@ -1,7 +1,7 @@
 import { Container, SectionHeading } from "@/components/ui/Primitives";
 import { Quote, Star } from "@/components/ui/Icons";
-import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { testimonials } from "@/lib/site";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { googleRating, testimonials } from "@/lib/site";
 
 export function Testimonials() {
   return (
@@ -14,6 +14,21 @@ export function Testimonials() {
             eyebrow="Kind words"
             title="Trusted by neighbors across western Wisconsin."
           />
+          <Reveal delay={0.1}>
+            <div className="mt-7 inline-flex items-center gap-3 rounded-full bg-cream/[0.07] px-5 py-2.5 ring-1 ring-cream/15">
+              <span className="font-display text-xl font-semibold text-cream">
+                {googleRating.score}
+              </span>
+              <span className="flex gap-0.5">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <Star key={i} className="size-4 text-leaf-bright" />
+                ))}
+              </span>
+              <span className="text-sm text-cream/70">
+                {googleRating.count}+ Google reviews
+              </span>
+            </div>
+          </Reveal>
         </div>
 
         <RevealGroup className="mt-14 grid gap-6 md:grid-cols-3">

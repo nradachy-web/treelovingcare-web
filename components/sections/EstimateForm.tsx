@@ -29,7 +29,7 @@ export function EstimateForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
 
-    // honeypot — bail silently for bots
+    // honeypot: bail silently for bots
     if (String(fd.get("botcheck") ?? "")) {
       setStatus("success");
       form.reset();

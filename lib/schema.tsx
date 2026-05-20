@@ -1,4 +1,4 @@
-import { services, serviceAreas, site } from "@/lib/site";
+import { googleRating, services, serviceAreas, site } from "@/lib/site";
 
 /** LocalBusiness / TreeService schema for the homepage. */
 export function localBusinessSchema() {
@@ -27,6 +27,12 @@ export function localBusinessSchema() {
       name: `${a.city}, WI`,
     })),
     openingHours: "Mo-Sa 07:00-18:00",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: googleRating.score,
+      reviewCount: googleRating.count,
+      bestRating: "5",
+    },
     sameAs: [site.facebook],
     knowsAbout: services.map((s) => s.name),
     makesOffer: services.map((s) => ({

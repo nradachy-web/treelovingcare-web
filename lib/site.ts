@@ -275,28 +275,46 @@ export const serviceAreas: ServiceArea[] = [
   },
 ];
 
-/**
- * Testimonials. NOTE FOR LAUNCH: replace these with verified, attributed
- * reviews pulled from Google Business Profile / Facebook before going live.
- */
+/** Google rating, pulled from the Google Business Profile. */
+export const googleRating = { score: "5.0", count: 170 };
+
+/** Real, verbatim 5-star reviews from the Google Business Profile. */
 export const testimonials = [
   {
     quote:
-      "They took down a huge silver maple that was leaning over our house. Professional from the first phone call, and you'd never know a crew was here, the yard was spotless.",
-    name: "Homeowner",
-    location: "La Crosse, WI",
+      "I have nothing but praise for Emlyn and his crew. A large poplar came down in a storm and fell on my car. Emlyn was able to come the same day (Saturday) and carefully clear the tree from my car. They do excellent work and are wonderful to work with.",
+    name: "Vicki Mathes",
+    location: "Google review",
   },
   {
     quote:
-      "Honest is the word. Another company wanted to remove our oak; Tree Loving Care said it just needed pruning and cabling. Saved the tree and saved us money.",
-    name: "Homeowner",
-    location: "Viroqua, WI",
+      "Can't say enough good things about this company! Came out and reviewed my trees for free. Even sent me a follow up text with their recommendations! I would highly recommend them if you are looking for an honest company with which you would like to do business.",
+    name: "Kim Cortez",
+    location: "Google review",
   },
   {
     quote:
-      "A storm dropped a tree across our driveway at night. They answered, showed up, and had us cleared by morning. Calm, kind, and completely capable.",
-    name: "Homeowner",
-    location: "Westby, WI",
+      "Emlyn, Jared and Mike are wonderful guys to work with. They skillfully removed a huge elm tree from my back yard. They have always come on time, been polite and courteous, and did an excellent job of cleaning up the mess. I would totally recommend Tree Loving Care.",
+    name: "Bernice Baker",
+    location: "Google review",
+  },
+  {
+    quote:
+      "Tree Loving Care was very prompt to come to my rescue to deal with broken branches hovering over my house. All the crew members are very friendly and very knowledgeable. They know what cuts are necessary to keep the rest of the tree healthy.",
+    name: "Daniel Solverson",
+    location: "Google review",
+  },
+  {
+    quote:
+      "Emlyn and his crew did a great job on our oak and fruit trees. They were prompt, left a perfectly clean ground when done and the trees look good. Most of all, they did not damage the trees doing the work and were careful about fences under the trees.",
+    name: "Susan Cushing",
+    location: "Google review",
+  },
+  {
+    quote:
+      "It was very refreshing to work with a company that has excellent communication, arrives when they say they will, and works continuously to get the job done. Emlyn and his crew do an exceptional job of cleaning up. We will definitely recommend Tree Loving Care.",
+    name: "Joe and Carol Persons",
+    location: "Google review",
   },
 ];
 
