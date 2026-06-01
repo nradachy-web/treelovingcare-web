@@ -120,6 +120,8 @@ export type Service = {
   image: string;
   /** descriptive alt text for the service photo */
   imageAlt: string;
+  /** supporting photos: [framed lead image, full-width mid-page band] */
+  gallery: string[];
 };
 
 export type ServiceIcon =
@@ -194,8 +196,9 @@ export const services: Service[] = [
     outcome:
       "Trees that are safer, healthier, and shaped to grow strong for decades, pruned the way an arborist would.",
     icon: "pruning",
-    image: "/photos/services/pruning-1.jpg",
+    image: "/photos/gallery/gallery-27.jpg",
     imageAlt: "An arborist making a careful pruning cut in a mature shade tree",
+    gallery: ["/photos/services/lift-1.jpg", "/photos/gallery/gallery-26.jpg"],
   },
   {
     slug: "tree-removal",
@@ -234,8 +237,9 @@ export const services: Service[] = [
     outcome:
       "The hazard is gone, your property is respected, and you understood every option before the saw ever started.",
     icon: "removal",
-    image: "/photos/services/removal-1.jpg",
-    imageAlt: "A Tree Loving Care crew safely taking down a large tree beside a home",
+    image: "/photos/services/removal-2.jpg",
+    imageAlt: "A Tree Loving Care climber dismantling a large tree in sections above a home",
+    gallery: ["/photos/services/removal-1.jpg", "/photos/gallery/gallery-31.jpg"],
   },
   {
     slug: "tree-planting",
@@ -313,8 +317,9 @@ export const services: Service[] = [
     outcome:
       "The right tree, in the right place, planted and cared for so it thrives for generations instead of failing in five years.",
     icon: "planting",
-    image: "/photos/services/pruning-1.jpg",
-    imageAlt: "A healthy, established tree in a sunny Wisconsin yard",
+    image: "/photos/gallery/gallery-33.jpg",
+    imageAlt: "A healthy tree above the rolling green farmland of the Driftless Region",
+    gallery: ["/photos/gallery/gallery-26.jpg", "/photos/gallery/gallery-28.jpg"],
   },
   {
     slug: "tree-support-systems",
@@ -351,6 +356,7 @@ export const services: Service[] = [
     icon: "cabling",
     image: "/photos/services/cabling-1.jpg",
     imageAlt: "A steel support cable installed high in a mature tree's canopy",
+    gallery: ["/photos/gallery/gallery-34.jpg", "/photos/gallery/gallery-33.jpg"],
   },
   {
     slug: "storm-emergency-tree-work",
@@ -386,6 +392,7 @@ export const services: Service[] = [
     icon: "emergency",
     image: "/photos/services/emergency-1.jpg",
     imageAlt: "A Tree Loving Care crew clearing a storm-damaged tree",
+    gallery: ["/photos/gallery/gallery-29.jpg", "/photos/services/emergency-2.jpg"],
   },
   {
     slug: "stump-grinding",
@@ -416,6 +423,7 @@ export const services: Service[] = [
     icon: "stump",
     image: "/photos/services/stump-1.jpg",
     imageAlt: "A ground-down stump leaving clean, level soil ready to reuse",
+    gallery: ["/photos/about/company-truck-jobsite.jpg", "/photos/services/chipping-1.jpg"],
   },
 
   /* --------------------------- SPECIALTY SERVICES -------------------------- */
@@ -463,6 +471,7 @@ export const services: Service[] = [
     icon: "assessment",
     image: "/photos/services/assessment-1.jpg",
     imageAlt: "An ISA Certified Arborist inspecting a mature tree for signs of risk",
+    gallery: ["/photos/about/owner-phone-call.jpg", "/photos/gallery/gallery-10.jpg"],
   },
   {
     slug: "construction-tree-protection",
@@ -510,6 +519,7 @@ export const services: Service[] = [
     icon: "protection",
     image: "/photos/about/company-truck-jobsite.jpg",
     imageAlt: "Tree Loving Care equipment at a work site near mature trees",
+    gallery: ["/photos/services/assessment-1.jpg", "/photos/gallery/gallery-28.jpg"],
   },
   {
     slug: "consultations",
@@ -550,6 +560,7 @@ export const services: Service[] = [
     icon: "consultation",
     image: "/photos/about/owner-phone-call.jpg",
     imageAlt: "Tree Loving Care's owner talking through a tree question by phone",
+    gallery: ["/photos/about/crewman-chainsaw-portrait.jpg", "/photos/about/team-four-crew-summer.jpg"],
   },
 ];
 

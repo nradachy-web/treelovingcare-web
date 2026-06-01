@@ -136,6 +136,10 @@ export default async function ServiceDetailPage({
   const others = services.filter((s) => s.slug !== service.slug);
   const schema = serviceSchema(service.slug);
   const tierLabel = service.tier === "specialty" ? "Specialty service" : "Tree service";
+  const splitAt = Math.ceil(service.blocks.length / 2);
+  const leadBlocks = service.blocks.slice(0, splitAt);
+  const restBlocks = service.blocks.slice(splitAt);
+  const bandImage = service.gallery[1];
 
   return (
     <>
@@ -202,7 +206,7 @@ export default async function ServiceDetailPage({
             <Reveal delay={0.1}>
               <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-lift">
                 <Image
-                  src={service.image}
+                  src={service.gallery[0]}
                   alt=""
                   fill
                   sizes="(max-width: 1024px) 100vw, 45vw"
@@ -217,18 +221,46 @@ export default async function ServiceDetailPage({
         </Container>
       </section>
 
-      {/* ordered content blocks */}
-      <section className="bg-cream py-20 sm:py-28">
+      {/* ordered content blocks, broken up by a cinematic photo band */}
+      <section className="bg-cream pt-20 sm:pt-28">
         <Container>
           <div className="mx-auto flex max-w-4xl flex-col gap-14">
-            {service.blocks.map((block, i) => (
+            {leadBlocks.map((block, i) => (
               <Reveal key={`${block.kind}-${i}`} delay={0.04}>
                 <Block block={block} />
               </Reveal>
             ))}
           </div>
         </Container>
+        <div className="h-16 sm:h-24" />
       </section>
+
+      {bandImage && (
+        <section className="relative h-[46vh] min-h-[300px] overflow-hidden">
+          <Image
+            src={bandImage}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-canopy/55 via-canopy/10 to-canopy/25" />
+        </section>
+      )}
+
+      {restBlocks.length > 0 && (
+        <section className="bg-cream pb-20 pt-16 sm:pb-28 sm:pt-24">
+          <Container>
+            <div className="mx-auto flex max-w-4xl flex-col gap-14">
+              {restBlocks.map((block, i) => (
+                <Reveal key={`${block.kind}-rest-${i}`} delay={0.04}>
+                  <Block block={block} />
+                </Reveal>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* best-fit customer */}
       {service.bestFit && (
