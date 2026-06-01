@@ -4,10 +4,10 @@
  */
 
 export const img = {
-  // hero, swapped to the AI-generated hero once produced; falls back to real photo
-  hero: "/photos/hero/hero-home.jpg",
+  // real client photography, drone view of mature canopy over Driftless-region rooftops
+  hero: "/photos/hero/hero-drone-rooftop-canopy.jpg",
   heroAlt:
-    "A grand, healthy shade tree beside a welcoming Wisconsin home at golden hour",
+    "Mature tree canopy over homes in the Driftless Region of western Wisconsin",
 
   guide: "/photos/about/owner-portrait-red-wall.jpg",
   guideAlt: "A Tree Loving Care arborist on a job site with a clipboard",

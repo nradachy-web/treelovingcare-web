@@ -21,7 +21,7 @@ export async function generateMetadata({
   if (!area) return {};
   return {
     title: `Tree Service in ${area.city}, WI`,
-    description: `ISA Certified tree removal, trimming, stump grinding and emergency tree service in ${area.city}, ${area.county}. Free estimates from Tree Loving Care.`,
+    description: `ISA Certified tree pruning, removal, planting, and tree risk assessment in ${area.city}, ${area.county}. Thoughtful, arborist-led tree care from Tree Loving Care.`,
     alternates: { canonical: `/service-areas/${area.slug}` },
   };
 }
@@ -82,8 +82,8 @@ export default async function ServiceAreaPage({
                   Whether it's a storm-damaged limb, an overgrown maple, or a
                   tree you're simply not sure about, Tree Loving Care brings
                   certified expertise to every property in {area.city} and
-                  throughout {area.county}. Call {site.phone} for a free,
-                  no-pressure estimate.
+                  throughout {area.county}. Call {site.phone} for a
+                  no-pressure assessment.
                 </p>
               </Reveal>
             </div>
@@ -161,7 +161,7 @@ export default async function ServiceAreaPage({
         </Container>
       </section>
 
-      <CtaBand title={`Tree trouble in ${area.city}? We'll take a look, free.`} />
+      <CtaBand title={`Tree questions in ${area.city}? Let's take a look.`} />
     </>
   );
 }

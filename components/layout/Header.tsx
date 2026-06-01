@@ -79,7 +79,7 @@ export function Header() {
           </a>
           <span className="hidden sm:inline-flex">
             <ButtonLink href="/contact" variant="primary">
-              Free Estimate
+              Request an Assessment
             </ButtonLink>
           </span>
           <button
@@ -126,7 +126,7 @@ export function Header() {
                   {site.phone}
                 </a>
                 <ButtonLink href="/contact" variant="primary" size="lg" withArrow>
-                  Request a Free Estimate
+                  Request an Assessment
                 </ButtonLink>
               </div>
             </nav>

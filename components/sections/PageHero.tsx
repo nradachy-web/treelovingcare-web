@@ -43,18 +43,18 @@ export function PageHero({
                 aria-label="Breadcrumb"
                 className="mb-5 flex flex-wrap items-center gap-2 text-sm text-cream/55"
               >
-                <Link href="/" className="hover:text-cream">
+                <Link href="/" className="inline-flex py-1 -my-1 hover:text-cream">
                   Home
                 </Link>
                 {crumbs.map((c) => (
                   <span key={c.label} className="flex items-center gap-2">
                     <span aria-hidden>/</span>
                     {c.href ? (
-                      <Link href={c.href} className="hover:text-cream">
+                      <Link href={c.href} className="inline-flex py-1 -my-1 hover:text-cream">
                         {c.label}
                       </Link>
                     ) : (
-                      <span className="text-cream/80">{c.label}</span>
+                      <span className="text-cream/80" aria-current="page">{c.label}</span>
                     )}
                   </span>
                 ))}

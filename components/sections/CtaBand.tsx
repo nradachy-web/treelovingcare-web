@@ -5,8 +5,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { site } from "@/lib/site";
 
 export function CtaBand({
-  title = "Ready to stop worrying about that tree?",
-  text = "Tell us what's going on. A certified arborist will take a look and give you an honest, no-pressure estimate, free.",
+  title = "Not sure what your tree needs?",
+  text = "Tell us what's going on. A certified arborist will take a look, explain your real options, and recommend the next step, at no cost and with no pressure.",
 }: {
   title?: string;
   text?: string;
@@ -25,7 +25,7 @@ export function CtaBand({
               </div>
               <div className="flex flex-col gap-3 md:items-end">
                 <ButtonLink href="/contact" variant="primary" size="lg" withArrow>
-                  Request a Free Estimate
+                  Request an Assessment
                 </ButtonLink>
                 <a
                   href={site.phoneHref}

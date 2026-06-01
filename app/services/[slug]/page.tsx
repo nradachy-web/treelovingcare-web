@@ -8,7 +8,7 @@ import { Container, Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { Check, ArrowRight, ServiceGlyph } from "@/components/ui/Icons";
 import { ButtonLink } from "@/components/ui/Button";
-import { services, site } from "@/lib/site";
+import { services, site, type ServiceBlock } from "@/lib/site";
 import { JsonLd, breadcrumbSchema, serviceSchema } from "@/lib/schema";
 
 export function generateStaticParams() {
@@ -23,9 +23,107 @@ export async function generateMetadata({
   if (!service) return {};
   return {
     title: service.name,
-    description: `${service.promise} ${service.name} by ISA Certified Arborists in ${site.regionShort}. Free estimates.`,
+    description: `${service.promise} ${service.name} led by an ISA Certified Arborist across ${site.regionShort}. Request an assessment.`,
     alternates: { canonical: `/services/${service.slug}` },
   };
+}
+
+/** Renders a single ordered content block from the service data. */
+function Block({ block }: { block: ServiceBlock }) {
+  if (block.kind === "callout") {
+    return (
+      <div className="rounded-3xl border-l-4 border-forest bg-leaf/10 p-7 sm:p-9">
+        <p className="eyebrow text-forest">{block.heading}</p>
+        <p className="mt-4 text-lg leading-relaxed text-bark text-pretty">
+          {block.body}
+        </p>
+      </div>
+    );
+  }
+
+  if (block.kind === "prose") {
+    return (
+      <div>
+        <h2 className="font-display text-[clamp(1.5rem,2.8vw,2rem)] font-medium leading-tight text-canopy text-balance">
+          {block.heading}
+        </h2>
+        <div className="mt-5 flex flex-col gap-4">
+          {block.body.map((p) => (
+            <p key={p} className="text-lg leading-relaxed text-stone text-pretty">
+              {p}
+            </p>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (block.kind === "warranty") {
+    return (
+      <div className="rounded-3xl border border-bark/10 bg-paper p-7 shadow-soft sm:p-9">
+        <h2 className="font-display text-[clamp(1.5rem,2.8vw,2rem)] font-medium leading-tight text-canopy">
+          {block.heading}
+        </h2>
+        {block.intro && (
+          <p className="mt-4 text-lg leading-relaxed text-stone text-pretty">
+            {block.intro}
+          </p>
+        )}
+        <ul className="mt-6 flex flex-col gap-3">
+          {block.items.map((item) => (
+            <li key={item} className="flex items-start gap-3.5">
+              <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-leaf text-canopy">
+                <Check className="size-4" strokeWidth={2.6} />
+              </span>
+              <span className="leading-relaxed text-bark">{item}</span>
+            </li>
+          ))}
+        </ul>
+        {block.fineprint && (
+          <p className="mt-6 border-t border-bark/10 pt-5 text-sm leading-relaxed text-stone">
+            {block.fineprint}
+          </p>
+        )}
+      </div>
+    );
+  }
+
+  // list (default + warn tone)
+  const warn = block.tone === "warn";
+  return (
+    <div>
+      <h2 className="font-display text-[clamp(1.5rem,2.8vw,2rem)] font-medium leading-tight text-canopy text-balance">
+        {block.heading}
+      </h2>
+      {block.intro && (
+        <p className="mt-4 text-lg leading-relaxed text-stone text-pretty">
+          {block.intro}
+        </p>
+      )}
+      <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+        {block.items.map((item) => (
+          <li
+            key={item}
+            className="flex items-start gap-3.5 rounded-xl bg-paper px-4 py-3.5"
+          >
+            {warn ? (
+              <span
+                className="mt-1 grid size-6 shrink-0 place-items-center rounded-full border border-clay/45"
+                aria-hidden
+              >
+                <span className="h-0.5 w-3 rounded bg-clay" />
+              </span>
+            ) : (
+              <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-leaf text-canopy">
+                <Check className="size-4" strokeWidth={2.6} />
+              </span>
+            )}
+            <span className="leading-relaxed text-bark">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default async function ServiceDetailPage({
@@ -37,6 +135,7 @@ export default async function ServiceDetailPage({
 
   const others = services.filter((s) => s.slug !== service.slug);
   const schema = serviceSchema(service.slug);
+  const tierLabel = service.tier === "specialty" ? "Specialty service" : "Tree service";
 
   return (
     <>
@@ -52,125 +151,112 @@ export default async function ServiceDetailPage({
       />
 
       <PageHero
-        eyebrow="Tree service"
+        eyebrow={tierLabel}
         title={service.name}
         intro={service.promise}
-        image={`/photos/services/${service.image}`}
-        imageAlt={service.name}
+        image={service.image}
+        imageAlt={service.imageAlt}
         crumbs={[
           { label: "Services", href: "/services" },
           { label: service.name },
         ]}
       />
 
-      {/* the worry + intro */}
+      {/* lead: intro + framed photo */}
       <section className="bg-paper py-20 sm:py-28">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
               <Reveal>
-                <Eyebrow>The problem</Eyebrow>
+                <Eyebrow>The work</Eyebrow>
               </Reveal>
               <Reveal delay={0.08}>
-                <p className="font-display mt-5 text-[clamp(1.5rem,2.6vw,2.1rem)] font-medium leading-[1.2] text-canopy text-balance">
-                  {service.worry}
-                </p>
-              </Reveal>
-              <Reveal delay={0.14}>
-                <p className="mt-6 text-lg leading-relaxed text-stone text-pretty">
+                <p className="mt-5 text-[clamp(1.15rem,1.7vw,1.4rem)] leading-relaxed text-bark text-pretty">
                   {service.intro}
                 </p>
               </Reveal>
-            </div>
-            <Reveal delay={0.1}>
-              <div className="rounded-3xl bg-canopy p-7 text-cream">
-                <span className="grid size-14 place-items-center rounded-2xl bg-leaf/15 text-leaf-bright">
-                  <ServiceGlyph name={service.icon} className="size-8" />
-                </span>
-                <h2 className="font-display mt-5 text-xl font-semibold">
-                  Why homeowners call us for this
-                </h2>
-                <ul className="mt-4 flex flex-col gap-3 text-sm text-cream/80">
-                  <li className="flex gap-2.5">
-                    <Check className="mt-0.5 size-4 shrink-0 text-leaf-bright" />
-                    Led by an ISA Certified Arborist
-                  </li>
-                  <li className="flex gap-2.5">
-                    <Check className="mt-0.5 size-4 shrink-0 text-leaf-bright" />
-                    Fully insured, proof provided gladly
-                  </li>
-                  <li className="flex gap-2.5">
-                    <Check className="mt-0.5 size-4 shrink-0 text-leaf-bright" />
-                    Honest quotes with no pressure
-                  </li>
-                  <li className="flex gap-2.5">
-                    <Check className="mt-0.5 size-4 shrink-0 text-leaf-bright" />
-                    Complete cleanup, every time
-                  </li>
+              <Reveal delay={0.14}>
+                <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2.5 text-sm font-medium text-forest">
+                  {[
+                    "ISA Certified Arborist-led",
+                    "Removal is never the default",
+                    "Fully insured",
+                    "No-cost first assessment",
+                  ].map((point) => (
+                    <li key={point} className="inline-flex items-center gap-2">
+                      <Check className="size-4 shrink-0" strokeWidth={2.6} />
+                      {point}
+                    </li>
+                  ))}
                 </ul>
-                <div className="mt-6">
-                  <ButtonLink href="/contact" variant="primary" withArrow>
-                    Get a free estimate
+              </Reveal>
+              <Reveal delay={0.2}>
+                <div className="mt-9">
+                  <ButtonLink href="/contact" variant="solid" size="lg" withArrow>
+                    Request an Assessment
                   </ButtonLink>
                 </div>
-              </div>
-            </Reveal>
-          </div>
-        </Container>
-      </section>
+              </Reveal>
+            </div>
 
-      {/* what's included */}
-      <section className="bg-cream py-20 sm:py-28">
-        <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <Reveal className="order-2 lg:order-1">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-lift">
+            <Reveal delay={0.1}>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-lift">
                 <Image
-                  src={`/photos/services/${service.image}`}
-                  alt={`${service.name} in progress`}
+                  src={service.image}
+                  alt=""
                   fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
                   className="object-cover"
                 />
+                <span className="absolute left-5 top-5 grid size-12 place-items-center rounded-2xl bg-paper/95 text-forest shadow-soft backdrop-blur-sm">
+                  <ServiceGlyph name={service.icon} className="size-7" />
+                </span>
               </div>
             </Reveal>
-            <div className="order-1 lg:order-2">
-              <Reveal>
-                <Eyebrow>What's included</Eyebrow>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <h2 className="font-display mt-5 text-[clamp(1.8rem,3.4vw,2.6rem)] font-medium leading-[1.1] text-canopy text-balance">
-                  Done thoroughly, the first time.
-                </h2>
-              </Reveal>
-              <ul className="mt-7 flex flex-col gap-3">
-                {service.includes.map((item, i) => (
-                  <Reveal as="li" key={item} delay={0.12 + i * 0.06}>
-                    <span className="flex items-start gap-3.5 rounded-xl bg-paper px-4 py-3.5">
-                      <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-leaf text-canopy">
-                        <Check className="size-4" strokeWidth={2.6} />
-                      </span>
-                      <span className="leading-relaxed text-bark">{item}</span>
-                    </span>
-                  </Reveal>
-                ))}
-              </ul>
-            </div>
           </div>
         </Container>
       </section>
 
-      {/* the outcome */}
-      <section className="bg-canopy py-20 text-cream sm:py-24">
+      {/* ordered content blocks */}
+      <section className="bg-cream py-20 sm:py-28">
         <Container>
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <Eyebrow tone="cream">The result</Eyebrow>
-            <p className="font-display mt-6 text-[clamp(1.6rem,3.2vw,2.5rem)] font-medium leading-[1.22] text-balance">
-              {service.outcome}
-            </p>
-          </Reveal>
+          <div className="mx-auto flex max-w-4xl flex-col gap-14">
+            {service.blocks.map((block, i) => (
+              <Reveal key={`${block.kind}-${i}`} delay={0.04}>
+                <Block block={block} />
+              </Reveal>
+            ))}
+          </div>
         </Container>
       </section>
+
+      {/* best-fit customer */}
+      {service.bestFit && (
+        <section className="bg-paper py-16 sm:py-20">
+          <Container>
+            <Reveal className="mx-auto max-w-3xl rounded-[2rem] border border-bark/10 bg-cream p-8 text-center sm:p-12">
+              <Eyebrow>Who it's for</Eyebrow>
+              <p className="font-display mt-5 text-[clamp(1.3rem,2.4vw,1.8rem)] font-medium leading-snug text-canopy text-balance">
+                {service.bestFit}
+              </p>
+            </Reveal>
+          </Container>
+        </section>
+      )}
+
+      {/* the outcome */}
+      {service.outcome && (
+        <section className="bg-canopy py-20 text-cream sm:py-24">
+          <Container>
+            <Reveal className="mx-auto max-w-3xl text-center">
+              <Eyebrow tone="cream">The result</Eyebrow>
+              <p className="font-display mt-6 text-[clamp(1.6rem,3.2vw,2.5rem)] font-medium leading-[1.22] text-balance">
+                {service.outcome}
+              </p>
+            </Reveal>
+          </Container>
+        </section>
+      )}
 
       {/* other services */}
       <section className="bg-paper py-20 sm:py-24">
@@ -200,7 +286,7 @@ export default async function ServiceDetailPage({
         </Container>
       </section>
 
-      <CtaBand title={`Need ${service.name.toLowerCase()}? Let's take a look.`} />
+      <CtaBand title={`Have a tree in mind? Let's take a look.`} />
     </>
   );
 }

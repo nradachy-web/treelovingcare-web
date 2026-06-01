@@ -11,7 +11,7 @@ import { JsonLd, breadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Tree Loving Care is a family-owned, veteran-operated tree service led by an ISA Certified Arborist, serving the La Crosse and Viroqua, Wisconsin area with honest, expert care.",
+    "Tree Loving Care is a family-owned, veteran-operated tree service led by an ISA Certified Arborist, bringing thoughtful, stewardship-led care to the Driftless Region of western Wisconsin.",
   alternates: { canonical: "/about" },
 };
 
@@ -51,7 +51,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Tree Loving Care"
         title="The people you'd want looking after your trees."
-        intro="Family-owned, veteran-operated, and led by a certified arborist, built on the belief that expert tree care should also feel genuinely kind."
+        intro="Family-owned, veteran-operated, and led by a certified arborist, built on the belief that strong trees are shaped by the stewardship behind them."
         image="/photos/about/team-four-crew-summer.jpg"
         imageAlt="The Tree Loving Care crew on a job site"
         crumbs={[{ label: "About" }]}
@@ -116,10 +116,10 @@ export default function AboutPage() {
                 <Reveal delay={0.2}>
                   <p>
                     Today, from our shop in Viroqua, we care for trees across
-                    the La Crosse region, from routine pruning to the kind of
-                    storm calls that come in at midnight. Every job, large or
-                    small, gets the same certified eye and the same spotless
-                    cleanup.
+                    the Driftless Region, from routine pruning and planting to
+                    the kind of storm calls that come in at midnight. Every job,
+                    large or small, gets the same certified eye and the same
+                    spotless cleanup.
                   </p>
                 </Reveal>
               </div>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Container, SectionHeading } from "@/components/ui/Primitives";
 import { ServiceGlyph, ArrowRight } from "@/components/ui/Icons";
 import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { services, type Service } from "@/lib/site";
+import { services, mainServices, type Service } from "@/lib/site";
 
 export function ServiceCard({ service }: { service: Service }) {
   return (
@@ -13,13 +13,13 @@ export function ServiceCard({ service }: { service: Service }) {
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
-          src={`/photos/services/${service.image}`}
+          src={service.image}
           alt={service.name}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-canopy/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-canopy/25 to-transparent" />
         <span className="absolute left-4 top-4 grid size-12 place-items-center rounded-2xl bg-paper/95 text-forest shadow-soft backdrop-blur-sm">
           <ServiceGlyph name={service.icon} className="size-7" />
         </span>
@@ -40,10 +40,10 @@ export function ServiceCard({ service }: { service: Service }) {
   );
 }
 
-export function ServicesGrid() {
+export function ServicesGrid({ items = services }: { items?: Service[] }) {
   return (
     <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {services.map((service) => (
+      {items.map((service) => (
         <RevealItem key={service.slug} className="h-full">
           <ServiceCard service={service} />
         </RevealItem>
@@ -59,11 +59,11 @@ export function ServicesSection() {
         <div className="mb-12 flex flex-col gap-6 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             eyebrow="What we do"
-            title="Complete tree care, from one trusted crew."
-            intro="Whatever your trees need, it’s handled by certified professionals who do the job right and clean up like they were never there."
+            title="Thoughtful care for every tree on your property."
+            intro="From pruning and planting to removal and storm response, every job is led by an ISA Certified Arborist who looks beyond the immediate concern, and never defaults to taking a tree down."
           />
         </div>
-        <ServicesGrid />
+        <ServicesGrid items={mainServices} />
       </Container>
     </section>
   );

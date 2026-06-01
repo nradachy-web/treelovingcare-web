@@ -27,11 +27,11 @@ export function ProblemSection() {
                 />
               </div>
               <div className="absolute -bottom-6 -right-4 max-w-[15rem] rounded-2xl bg-canopy p-5 text-cream shadow-lift sm:-right-6">
-                <p className="font-display text-3xl font-semibold text-leaf-bright">
-                  Free
+                <p className="font-display text-xl font-semibold text-leaf-bright">
+                  No-cost first visit
                 </p>
                 <p className="mt-1 text-sm text-cream/75">
-                  Every estimate is on us, and there’s never any pressure.
+                  Most assessments are on us, and there’s never any pressure.
                 </p>
               </div>
             </div>
@@ -50,9 +50,9 @@ export function ProblemSection() {
               <p className="mt-5 text-lg leading-relaxed text-stone text-pretty">
                 It starts small, a dead limb over the walkway, roots lifting
                 the sidewalk, a lean that wasn’t there last spring. Then a storm
-                rolls through, and you find yourself staring at the ceiling,
-                hoping. You shouldn’t have to wonder whether the trees around
-                your home are protecting it or threatening it.
+                rolls through, and you realize you never had a clear answer
+                about that tree. You shouldn’t have to wonder whether the trees
+                around your home are protecting it or threatening it.
               </p>
             </Reveal>
 
@@ -63,7 +63,7 @@ export function ProblemSection() {
                     key={w}
                     className="flex items-start gap-3 rounded-xl bg-cream px-4 py-3.5 text-[0.97rem] leading-relaxed text-bark"
                   >
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-clay" />
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-clay" aria-hidden />
                     {w}
                   </li>
                 ))}

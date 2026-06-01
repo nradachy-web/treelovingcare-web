@@ -31,24 +31,24 @@ export function Hero() {
 
           <Reveal delay={0.08}>
             <h1 className="font-display mt-6 text-[clamp(2.6rem,6.4vw,4.85rem)] font-medium leading-[1.02] text-cream text-balance">
-              Expert tree care that keeps your home{" "}
-              <span className="text-leaf-bright">safe</span> and your yard{" "}
-              <span className="italic">beautiful</span>.
+              Thoughtful tree care for people who{" "}
+              <span className="text-leaf-bright">value</span> their{" "}
+              <span className="italic">trees</span>.
             </h1>
           </Reveal>
 
           <Reveal delay={0.16}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/80 text-pretty">
               Family-owned, veteran-operated, and led by an ISA Certified
-              Arborist. From routine pruning to emergency removals, Tree Loving
-              Care does it right, and leaves your property spotless.
+              Arborist. We look beyond the immediate concern, at the tree, the
+              site, and your goals, and never default to taking a tree down.
             </p>
           </Reveal>
 
           <Reveal delay={0.24}>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <ButtonLink href="/contact" variant="primary" size="lg" withArrow>
-                Request a Free Estimate
+                Request an Assessment
               </ButtonLink>
               <a
                 href={site.phoneHref}

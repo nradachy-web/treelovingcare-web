@@ -9,7 +9,7 @@ import { serviceAreas } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Service Areas",
   description:
-    "Tree Loving Care provides certified tree service to La Crosse, Viroqua, Onalaska, West Salem, Holmen, Westby, Sparta and surrounding western Wisconsin communities.",
+    "Tree Loving Care provides thoughtful, certified tree care across the Driftless Region of western Wisconsin: Viroqua, La Crosse, Onalaska, West Salem, Holmen, Westby, Sparta, La Farge, Stoddard, Gays Mills and surrounding communities.",
   alternates: { canonical: "/service-areas" },
 };
 
@@ -25,7 +25,7 @@ export default function ServiceAreasPage() {
       <PageHero
         eyebrow="Where we work"
         title="Certified tree care, close to home."
-        intro={`Based in Viroqua and proud to serve homeowners across the La Crosse region, ${serviceAreas.length} communities and the countryside in between.`}
+        intro={`Based in Viroqua and proud to serve homeowners across the Driftless Region of western Wisconsin, ${serviceAreas.length} communities and the countryside in between.`}
         image="/photos/gallery/gallery-23.jpg"
         imageAlt="The snow-covered western Wisconsin countryside"
         crumbs={[{ label: "Service Areas" }]}

@@ -52,7 +52,7 @@ export function serviceSchema(slug: string) {
     description: service.intro,
     serviceType: service.name,
     provider: { "@id": `${site.url}/#business` },
-    areaServed: serviceAreas.map((a) => `${a.city}, WI`),
+    areaServed: serviceAreas.map((a) => ({ "@type": "City", name: `${a.city}, WI` })),
     url: `${site.url}/services/${service.slug}`,
   };
 }

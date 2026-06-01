@@ -44,7 +44,7 @@ export function AreasSection() {
             align="center"
             eyebrow="Where we work"
             title="Local, certified tree care close to home."
-            intro="We’re based in Viroqua and proud to serve homeowners throughout the La Crosse region. If you don’t see your town, just ask, chances are we’re already nearby."
+            intro="We’re based in Viroqua and proud to serve homeowners throughout the Driftless Region of western Wisconsin. If you don’t see your town, just ask, chances are we’re already nearby."
           />
         </div>
         <div className="mt-12">

@@ -9,9 +9,9 @@ import { faqs, serviceAreas, site } from "@/lib/site";
 import { JsonLd, breadcrumbSchema, faqSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Contact & Free Estimate",
+  title: "Contact & Request an Assessment",
   description:
-    "Request a free tree service estimate from Tree Loving Care, or call (608) 615-7740. Serving the La Crosse and Viroqua, Wisconsin area, emergency service 24/7.",
+    "Request an assessment from Tree Loving Care, or call (608) 615-7740. Thoughtful, arborist-led tree care across the Driftless Region of western Wisconsin, emergency service 24/7.",
   alternates: { canonical: "/contact" },
 };
 
@@ -61,7 +61,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Get in touch"
         title="Let's take a look at your trees."
-        intro="Send us the details below or call directly. Every estimate is free, and there's never any pressure to book."
+        intro="Send us the details below or call directly. Most assessments are no-cost, and there's never any pressure to book."
         image="/photos/about/company-truck-jobsite.jpg"
         imageAlt="A Tree Loving Care truck on a job site"
         crumbs={[{ label: "Contact" }]}
@@ -130,9 +130,9 @@ export default function ContactPage() {
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-stone">
                     We'll get back to you to schedule a visit. A certified
-                    arborist looks at the trees in question, answers your
-                    questions, and leaves you with a clear written quote, at no
-                    cost.
+                    arborist looks at the trees in question, listens to your
+                    goals, and gives you clear recommendations, and, when
+                    appropriate, a quote or proposal for the next step.
                   </p>
                   <p className="mt-4 text-sm text-stone">
                     <span className="font-semibold text-canopy">

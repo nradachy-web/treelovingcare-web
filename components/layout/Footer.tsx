@@ -14,16 +14,16 @@ export function Footer() {
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-5 py-16 sm:px-8 md:grid-cols-[1.4fr_1fr] md:items-center">
           <div>
             <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-medium leading-[1.1] text-balance">
-              Stop worrying about that tree.
+              Not sure what your tree needs?
             </h2>
             <p className="mt-3 max-w-md text-cream/70">
-              A certified arborist will take a look and give you an honest,
-              no-pressure estimate, free.
+              A certified arborist will take a look, explain your options, and
+              recommend the next step, at no cost and with no pressure.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:flex-col md:items-end">
             <ButtonLink href="/contact" variant="primary" size="lg" withArrow>
-              Request a Free Estimate
+              Request an Assessment
             </ButtonLink>
             <a
               href={site.phoneHref}

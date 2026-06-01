@@ -41,7 +41,7 @@ export function PlanSection() {
 
         <Reveal delay={0.1} className="mt-12 flex justify-center">
           <ButtonLink href="/contact" variant="solid" size="lg" withArrow>
-            Start with a free estimate
+            Request an Assessment
           </ButtonLink>
         </Reveal>
       </Container>

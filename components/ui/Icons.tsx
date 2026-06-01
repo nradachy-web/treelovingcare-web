@@ -178,13 +178,48 @@ function Assessment(props: IconProps) {
   );
 }
 
+function Planting(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 20h16" />
+      <path d="M8 20c0-2 1.8-3.2 4-3.2s4 1.2 4 3.2" />
+      <path d="M12 16.8v-4.3" />
+      <path d="M12 12.5c-2 0-3.2-1.2-3.2-3C10.8 9.5 12 10.7 12 12.5Z" />
+      <path d="M12 11.8c0-1.8 1.2-3 3.2-3 0 1.8-1.2 3-3.2 3Z" />
+    </svg>
+  );
+}
+
+function Protection(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3 5 5.5v5C5 16 8 19.5 12 21c4-1.5 7-5 7-10.5v-5L12 3Z" />
+      <path d="M12 16v-3" />
+      <path d="M12 13c-1.6 0-2.7-1-2.7-2.4C11 10.6 12 11.6 12 13Z" />
+      <path d="M12 12.6c0-1.4 1-2.4 2.7-2.4 0 1.4-1.1 2.4-2.7 2.4Z" />
+    </svg>
+  );
+}
+
+function Consultation(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4.5 6.5A1.5 1.5 0 0 1 6 5h12a1.5 1.5 0 0 1 1.5 1.5v7A1.5 1.5 0 0 1 18 15h-6l-4 3.5V15H6a1.5 1.5 0 0 1-1.5-1.5Z" />
+      <path d="M8 8.8h8M8 11.4h5" />
+    </svg>
+  );
+}
+
 const serviceIcons: Record<ServiceIcon, (p: IconProps) => React.ReactElement> = {
   removal: Removal,
   pruning: Pruning,
+  planting: Planting,
   stump: Stump,
   cabling: Cabling,
   emergency: Emergency,
   assessment: Assessment,
+  protection: Protection,
+  consultation: Consultation,
 };
 
 export function ServiceGlyph({

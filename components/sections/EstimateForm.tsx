@@ -90,8 +90,8 @@ export function EstimateForm() {
         body: JSON.stringify({
           access_key: accessKey,
           subject: emergency
-            ? `EMERGENCY estimate request: ${name}`
-            : `New estimate request: ${name}`,
+            ? `EMERGENCY assessment request: ${name}`
+            : `New assessment request: ${name}`,
           from_name: `${site.name} Website`,
           name,
           email: email || site.email,
@@ -128,8 +128,8 @@ export function EstimateForm() {
           Thank you, your request is in.
         </h3>
         <p className="mt-2 max-w-sm text-stone">
-          A member of our team will reach out shortly to schedule your free
-          estimate. If it's urgent, call us any time at{" "}
+          A member of our team will reach out shortly to schedule your
+          assessment. If it's urgent, call us any time at{" "}
           <a href={site.phoneHref} className="font-semibold text-forest">
             {site.phone}
           </a>
@@ -145,7 +145,7 @@ export function EstimateForm() {
       className="rounded-3xl border border-bark/10 bg-cream p-6 shadow-soft sm:p-8"
     >
       <h2 className="font-display text-2xl font-semibold text-canopy">
-        Request your free estimate
+        Request an assessment
       </h2>
       <p className="mt-1.5 text-sm text-stone">
         Tell us what's going on. We'll follow up to schedule a visit, no
@@ -284,7 +284,7 @@ export function EstimateForm() {
         </a>
       </div>
       <p className="mt-3 text-xs text-stone">
-        We'll only use your details to contact you about your estimate.
+        We'll only use your details to contact you about your assessment.
       </p>
     </form>
   );

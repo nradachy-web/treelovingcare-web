@@ -67,11 +67,12 @@ export function GuideSection() {
             </Reveal>
             <Reveal delay={0.14}>
               <p className="mt-5 text-lg leading-relaxed text-cream/75 text-pretty">
-                Tree Loving Care was built on a simple belief: the people
-                handling something as serious as the trees around your home
-                should be both deeply skilled and genuinely kind. We bring the
-                discipline of a veteran-operated company and the knowledge of a
-                certified arborist to every job, large or small.
+                Tree Loving Care was built on a simple belief: strong trees are
+                shaped by the environment around them and the stewardship behind
+                them. So we look beyond the branch that worried you, at the tree,
+                the site, and your long-term goals, and bring the discipline of a
+                veteran-operated company and the knowledge of a certified
+                arborist to every job.
               </p>
             </Reveal>
 
