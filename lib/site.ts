@@ -354,9 +354,9 @@ export const services: Service[] = [
     outcome:
       "A tree you'd hate to lose is reinforced, monitored, and standing strong, on purpose, not on luck.",
     icon: "cabling",
-    image: "/photos/services/cabling-1.jpg",
-    imageAlt: "A steel support cable installed high in a mature tree's canopy",
-    gallery: ["/photos/gallery/gallery-34.jpg", "/photos/gallery/gallery-33.jpg"],
+    image: "/photos/services/support-systems-1.jpg",
+    imageAlt: "Steel bracing rods installed through a tree's weak branch union for support",
+    gallery: ["/photos/services/support-systems-2.jpg", "/photos/services/support-systems-3.jpg"],
   },
   {
     slug: "storm-emergency-tree-work",
