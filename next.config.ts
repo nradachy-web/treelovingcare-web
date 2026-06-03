@@ -2,11 +2,10 @@ import type { NextConfig } from "next";
 
 /**
  * Static export for GitHub Pages.
- * Served as a project page at /treelovingcare-web — basePath set accordingly.
- * When the site moves to its own domain (treelovingcarellc.com), set
- * basePath to "" (and update lib/imageLoader.ts) and add a CNAME file.
+ * Served at the domain root on the custom domain treelovingcarellc.com
+ * (public/CNAME), so basePath is empty. lib/imageLoader.ts matches.
  */
-const repoBase = "/treelovingcare-web";
+const repoBase = "";
 
 const nextConfig: NextConfig = {
   output: "export",

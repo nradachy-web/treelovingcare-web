@@ -1,10 +1,9 @@
 /**
  * Custom next/image loader for static export on GitHub Pages.
- * Prepends the repo basePath to absolute /public paths so images resolve
- * under /treelovingcare-web. Static-import assets (already basePath-prefixed)
- * and remote URLs pass through untouched.
+ * Served at the domain root (treelovingcarellc.com), so basePath is empty
+ * and absolute /public paths resolve as-is. Remote URLs pass through.
  */
-const basePath = "/treelovingcare-web";
+const basePath = "";
 
 export default function imageLoader({ src }: { src: string }): string {
   if (/^https?:\/\//.test(src)) return src;
