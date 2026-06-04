@@ -114,13 +114,26 @@ export function Footer() {
 
       {/* legal */}
       <div className="border-t border-cream/10">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-5 py-6 text-xs text-cream/45 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-          <p>
-            © {year} {site.legalName}. All rights reserved.
-          </p>
-          <p>
-            ISA Certified Arborist {site.owner.credential.split("· ")[1]} ·
-            Fully insured
+        <div className="mx-auto w-full max-w-6xl px-5 py-6 sm:px-8">
+          <div className="flex flex-col gap-2 text-xs text-cream/45 sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              © {year} {site.legalName}. All rights reserved.
+            </p>
+            <p>
+              ISA Certified Arborist {site.owner.credential.split("· ")[1]} ·
+              Fully insured
+            </p>
+          </div>
+          <p className="mt-4 text-center text-xs text-cream/40">
+            Website and marketing by{" "}
+            <a
+              href="https://modernapexstrategies.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-cream/60 transition-colors hover:text-cream"
+            >
+              Modern Apex Strategies
+            </a>
           </p>
         </div>
       </div>
