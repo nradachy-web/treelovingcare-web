@@ -104,6 +104,13 @@ export function EstimateForm() {
       if (res.ok && data.success) {
         setStatus("success");
         form.reset();
+        // GA4 lead event; window.gtag is loaded in the root layout. This is the
+        // event Google Ads imports as a form conversion.
+        (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.(
+          "event",
+          "generate_lead",
+          { form: "request_an_assessment" }
+        );
         return;
       }
       setStatus("error");

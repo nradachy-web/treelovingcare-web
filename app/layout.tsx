@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
@@ -63,6 +64,18 @@ export default function RootLayout({
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-GZZGKFVT07"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-GZZGKFVT07');
+          `}
+        </Script>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
