@@ -27,7 +27,7 @@ export function CtaEvents() {
           link_text: (a.textContent || "").trim().slice(0, 60),
           page_path: window.location.pathname,
         });
-      } else if (href === "/contact" || href.startsWith("/contact#") || href.startsWith("/contact?")) {
+      } else if (/^\/contact(\/|#|\?|$)/.test(href)) {
         window.gtag("event", "cta_click", {
           cta: "request_an_assessment",
           link_text: (a.textContent || "").trim().slice(0, 60),
