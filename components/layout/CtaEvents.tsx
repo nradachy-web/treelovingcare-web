@@ -12,8 +12,10 @@ declare global {
  * Sitewide CTA tracking for GA4 (G-GZZGKFVT07). One capture-phase listener:
  *  - phone_call_click: any tap on a tel: link (header, footer, buttons, body copy)
  *  - cta_click: any click on a link into /contact (the Request an Assessment CTAs)
- * generate_lead fires separately in EstimateForm on successful submit.
- * phone_call_click + generate_lead are the two meant for Google Ads import.
+ * Form submits happen inside the Jobber embed (JobberRequestForm); the embed
+ * snippet passes our GA4 client_id/session_id into the iframe, so Jobber-side
+ * events attribute to this property. phone_call_click is meant for Google Ads
+ * import alongside the Jobber form conversion.
  */
 export function CtaEvents() {
   useEffect(() => {

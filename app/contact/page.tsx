@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
-import { EstimateForm } from "@/components/sections/EstimateForm";
+import { JobberRequestForm } from "@/components/sections/JobberRequestForm";
 import { Faq } from "@/components/sections/Faq";
 import { Container } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
@@ -71,7 +71,7 @@ export default function ContactPage() {
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
             <Reveal>
-              <EstimateForm />
+              <JobberRequestForm />
             </Reveal>
 
             <Reveal delay={0.1}>
