@@ -77,6 +77,11 @@ export default function RootLayout({
             gtag('config', 'G-GZZGKFVT07');
           `}
         </Script>
+        <Script
+          id="callrail-swap"
+          src="https://cdn.callrail.com/companies/827836559/96ddee8c539a9648cdcb/12/swap.js"
+          strategy="afterInteractive"
+        />
         <CtaEvents />
         <Header />
         <main className="flex-1">{children}</main>
