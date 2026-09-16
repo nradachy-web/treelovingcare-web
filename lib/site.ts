@@ -645,6 +645,20 @@ export const serviceAreas: ServiceArea[] = [
     blurb:
       "Orchard country and Driftless hillsides, Gays Mills homeowners trust us with the trees that matter to them.",
   },
+  {
+    slug: "coon-valley",
+    city: "Coon Valley",
+    county: "Vernon County",
+    blurb:
+      "Steep coulee lots and creek-bottom trees along Coon Creek get careful planning and arborist-led work from a crew based just up the ridge.",
+  },
+  {
+    slug: "de-soto",
+    city: "De Soto",
+    county: "Vernon County",
+    blurb:
+      "River-bluff hardwoods above the Mississippi need thoughtful care, and De Soto homeowners get it from a certified crew a short drive away.",
+  },
 ];
 
 /** Google rating, pulled from the Google Business Profile. */

@@ -1,20 +1,28 @@
 import { Container, SectionHeading } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
-import { faqs } from "@/lib/site";
+import { faqs as siteFaqs } from "@/lib/site";
 
-export function Faq() {
+type Item = { q: string; a: string };
+
+export function Faq({
+  items = siteFaqs,
+  eyebrow = "Good questions",
+  title = "Answers before you even ask.",
+  intro = "A few things homeowners want to know before they call. If yours isn't here, just reach out, we like questions.",
+}: {
+  items?: Item[];
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+}) {
   return (
     <section className="bg-cream py-20 sm:py-28">
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-          <SectionHeading
-            eyebrow="Good questions"
-            title="Answers before you even ask."
-            intro="A few things homeowners want to know before they call. If yours isn't here, just reach out, we like questions."
-          />
+          <SectionHeading eyebrow={eyebrow} title={title} intro={intro} />
 
           <div className="flex flex-col gap-3">
-            {faqs.map((faq, i) => (
+            {items.map((faq, i) => (
               <Reveal key={faq.q} delay={i * 0.05}>
                 <details className="group rounded-2xl border border-bark/10 bg-paper px-5 py-1 open:shadow-soft">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-display text-lg font-semibold text-canopy [&::-webkit-details-marker]:hidden">

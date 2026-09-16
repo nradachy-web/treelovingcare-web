@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { services, serviceAreas, site } from "@/lib/site";
+import { landingPath, landingRoutes } from "@/lib/landing";
 
 export const dynamic = "force-static";
 
@@ -32,6 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    ...landingRoutes.map((r) => ({
+      url: `${site.url}${landingPath(r.track, r.town)}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
   ];
 }

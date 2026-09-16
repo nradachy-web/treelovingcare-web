@@ -10,6 +10,7 @@ import { Check, ArrowRight, ServiceGlyph } from "@/components/ui/Icons";
 import { ButtonLink } from "@/components/ui/Button";
 import { services, site, type ServiceBlock } from "@/lib/site";
 import { JsonLd, breadcrumbSchema, serviceSchema } from "@/lib/schema";
+import { landingPath, landingTowns, landingTracks } from "@/lib/landing";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -140,6 +141,7 @@ export default async function ServiceDetailPage({
   const leadBlocks = service.blocks.slice(0, splitAt);
   const restBlocks = service.blocks.slice(splitAt);
   const bandImage = service.gallery[1];
+  const track = landingTracks.find((t) => t.hub.href === `/services/${service.slug}`);
 
   return (
     <>
@@ -286,6 +288,28 @@ export default async function ServiceDetailPage({
                 {service.outcome}
               </p>
             </Reveal>
+          </Container>
+        </section>
+      )}
+
+      {/* by town: the landing pages that feed this service */}
+      {track && (
+        <section className="bg-cream py-16 sm:py-20">
+          <Container>
+            <h2 className="font-display text-2xl font-semibold text-canopy">
+              {track.short} by town
+            </h2>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {landingTowns.map((t) => (
+                <Link
+                  key={t.slug}
+                  href={landingPath(track.slug, t.slug)}
+                  className="inline-flex items-center gap-2 rounded-full border border-bark/15 bg-paper px-5 py-2.5 text-sm font-medium text-bark transition-colors hover:border-moss/50 hover:text-forest"
+                >
+                  {t.city}, WI
+                </Link>
+              ))}
+            </div>
           </Container>
         </section>
       )}

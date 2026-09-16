@@ -8,6 +8,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { ServiceGlyph, ArrowRight, MapPin, Check } from "@/components/ui/Icons";
 import { services, serviceAreas, site } from "@/lib/site";
 import { JsonLd, breadcrumbSchema } from "@/lib/schema";
+import { getTown, landingPath, landingTracks } from "@/lib/landing";
 
 export function generateStaticParams() {
   return serviceAreas.map((a) => ({ slug: a.slug }));
@@ -41,6 +42,7 @@ export default async function ServiceAreaPage({
   if (!area) notFound();
 
   const nearby = serviceAreas.filter((a) => a.slug !== area.slug).slice(0, 4);
+  const landingTown = getTown(area.slug);
 
   return (
     <>
@@ -139,6 +141,31 @@ export default async function ServiceAreaPage({
           </RevealGroup>
         </Container>
       </section>
+
+      {/* popular requests: the service x town landing pages for this town */}
+      {landingTown && (
+        <section className="bg-paper py-16 sm:py-20">
+          <Container>
+            <h2 className="font-display text-2xl font-semibold text-canopy">
+              Most requested in {area.city}
+            </h2>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {landingTracks.map((t) => (
+                <Link
+                  key={t.slug}
+                  href={landingPath(t.slug, landingTown.slug)}
+                  className="group flex items-center justify-between gap-4 rounded-2xl border border-bark/10 bg-cream px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-moss/40 hover:shadow-soft"
+                >
+                  <span className="font-display font-semibold text-canopy">
+                    {t.short} in {area.city}
+                  </span>
+                  <ArrowRight className="size-4 text-moss transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* nearby */}
       <section className="bg-paper py-16 sm:py-20">
