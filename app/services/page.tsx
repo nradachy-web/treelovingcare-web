@@ -3,8 +3,12 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ServicesGrid } from "@/components/sections/Services";
 import { PlanSection } from "@/components/sections/PlanSection";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { RequestSection } from "@/components/sections/RequestSection";
+import { ReviewPicks } from "@/components/sections/ReviewPicks";
+import { StickyCallBar } from "@/components/sections/StickyCallBar";
 import { Container, SectionHeading } from "@/components/ui/Primitives";
-import { mainServices, specialtyServices } from "@/lib/site";
+import { mainServices, specialtyServices, testimonials } from "@/lib/site";
+import { getTrack, landingReviews } from "@/lib/landing";
 import { JsonLd, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -15,6 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
+  const track = getTrack("tree-service");
+  const reviews = track ? landingReviews(track) : testimonials.slice(0, 3);
+
   return (
     <>
       <JsonLd
@@ -61,7 +68,15 @@ export default function ServicesPage() {
       </section>
 
       <PlanSection />
+
+      <ReviewPicks reviews={reviews} title="What neighbors say about working with us." />
+
+      <RequestSection />
+
       <CtaBand />
+
+      <div className="h-20 md:hidden" aria-hidden />
+      <StickyCallBar />
     </>
   );
 }

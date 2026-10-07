@@ -4,13 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { RequestSection } from "@/components/sections/RequestSection";
+import { ReviewPicks } from "@/components/sections/ReviewPicks";
+import { StickyCallBar } from "@/components/sections/StickyCallBar";
 import { Container, Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
-import { Check, ArrowRight, ServiceGlyph } from "@/components/ui/Icons";
+import { Check, ArrowRight, PhoneIcon, ServiceGlyph } from "@/components/ui/Icons";
 import { ButtonLink } from "@/components/ui/Button";
-import { services, site, type ServiceBlock } from "@/lib/site";
+import { services, site, testimonials, type ServiceBlock } from "@/lib/site";
 import { JsonLd, breadcrumbSchema, serviceSchema } from "@/lib/schema";
-import { landingPath, landingTowns, landingTracks } from "@/lib/landing";
+import { landingPath, landingReviews, landingTowns, landingTracks } from "@/lib/landing";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -142,6 +145,7 @@ export default async function ServiceDetailPage({
   const restBlocks = service.blocks.slice(splitAt);
   const bandImage = service.gallery[1];
   const track = landingTracks.find((t) => t.hub.href === `/services/${service.slug}`);
+  const reviews = track ? landingReviews(track) : testimonials.slice(0, 3);
 
   return (
     <>
@@ -197,8 +201,15 @@ export default async function ServiceDetailPage({
                 </ul>
               </Reveal>
               <Reveal delay={0.2}>
-                <div className="mt-9">
-                  <ButtonLink href="/contact" variant="solid" size="lg" withArrow>
+                <div className="mt-9 flex flex-wrap items-center gap-3">
+                  <a
+                    href={site.phoneHref}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-leaf px-7 py-4 text-base font-semibold text-canopy shadow-[0_8px_24px_-8px_rgba(121,179,90,0.7)] transition-all duration-300 hover:bg-leaf-bright active:scale-[0.98]"
+                  >
+                    <PhoneIcon className="size-5" />
+                    Call {site.phone}
+                  </a>
+                  <ButtonLink href="#request" variant="outline" size="lg" withArrow>
                     Request an Assessment
                   </ButtonLink>
                 </div>
@@ -292,6 +303,10 @@ export default async function ServiceDetailPage({
         </section>
       )}
 
+      <ReviewPicks reviews={reviews} title="What neighbors say about working with us." />
+
+      <RequestSection />
+
       {/* by town: the landing pages that feed this service */}
       {track && (
         <section className="bg-cream py-16 sm:py-20">
@@ -343,6 +358,9 @@ export default async function ServiceDetailPage({
       </section>
 
       <CtaBand title={`Have a tree in mind? Let's take a look.`} />
+
+      <div className="h-20 md:hidden" aria-hidden />
+      <StickyCallBar />
     </>
   );
 }

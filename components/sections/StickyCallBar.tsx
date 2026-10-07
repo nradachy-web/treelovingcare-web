@@ -14,14 +14,14 @@ export function StickyCallBar() {
       <div className="mx-auto flex max-w-lg gap-3">
         <a
           href={site.phoneHref}
-          className="flex flex-1 items-center justify-center gap-2 rounded-full bg-leaf px-4 py-3.5 font-semibold text-canopy shadow-[0_8px_24px_-8px_rgba(121,179,90,0.7)] active:scale-[0.98]"
+          className="flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-leaf px-3 py-3.5 text-[0.95rem] font-semibold text-canopy shadow-[0_8px_24px_-8px_rgba(121,179,90,0.7)] active:scale-[0.98]"
         >
-          <PhoneIcon className="size-5" />
+          <PhoneIcon className="size-5 max-[359px]:hidden" />
           {site.phone}
         </a>
         <a
           href="#request"
-          className="flex flex-1 items-center justify-center rounded-full border border-canopy/25 px-4 py-3.5 font-semibold text-canopy active:scale-[0.98]"
+          className="flex flex-none items-center justify-center whitespace-nowrap rounded-full border border-canopy/25 px-4 py-3.5 text-[0.95rem] font-semibold text-canopy active:scale-[0.98]"
         >
           Request a visit
         </a>
