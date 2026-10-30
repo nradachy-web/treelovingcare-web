@@ -10,7 +10,7 @@ export const site = {
   legalName: "Tree Loving Care, LLC",
   url: "https://treelovingcarellc.com",
   description:
-    "Tree service and ISA Certified Arborist care in Viroqua, WI. Pruning, removal, planting, and 24/7 storm response across La Crosse and the Driftless Region.",
+    "Tree service and ISA Certified Arborist care in Viroqua, WI. Thoughtful pruning, removal, planting, and storm response across La Crosse and the Driftless Region.",
   tagline: "Thoughtful tree care for people who value trees.",
   region: "the Driftless Region of western Wisconsin",
   regionShort: "the Driftless Region, WI",

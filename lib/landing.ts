@@ -70,7 +70,7 @@ export const landingTowns: LandingTown[] = [
     setting: "our home base and the Vernon County seat",
     trees: "old shade trees along residential streets, farmstead windbreaks, and woodlots on the ridges",
     access: "everything from small in-town lots to farms and hobby acreage",
-    reach: "home to our shop at 102 Western Ave",
+    reach: "right here where our shop is",
     nearby: ["westby", "la-farge", "coon-valley", "de-soto"],
   },
   {
