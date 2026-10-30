@@ -10,7 +10,7 @@ export const site = {
   legalName: "Tree Loving Care, LLC",
   url: "https://treelovingcarellc.com",
   description:
-    "Thoughtful tree care for people who value trees. ISA Certified Arborist-led pruning, removal, planting, support systems, storm response, and tree risk assessment across the Driftless Region of western Wisconsin: Viroqua, La Crosse, and surrounding communities.",
+    "Tree service and ISA Certified Arborist care in Viroqua, WI. Pruning, removal, planting, and 24/7 storm response across La Crosse and the Driftless Region.",
   tagline: "Thoughtful tree care for people who value trees.",
   region: "the Driftless Region of western Wisconsin",
   regionShort: "the Driftless Region, WI",
@@ -26,6 +26,8 @@ export const site = {
   },
   hours: "Mon to Sat, 7am to 6pm · Emergency service 24/7",
   facebook: "https://www.facebook.com/Treelovingcarellc",
+  instagram: "https://www.instagram.com/treelovingcare/",
+  googleMaps: "https://www.google.com/maps?cid=8843803038585622623",
   owner: {
     name: "Emlyn Jones",
     title: "Owner & ISA Certified Arborist",
@@ -34,6 +36,11 @@ export const site = {
   motto:
     "Strong trees are shaped by the environment around them and the stewardship behind them.",
 } as const;
+
+/** Absolute URL for a site path, with the trailing slash the static export serves. */
+export function pageUrl(path: string) {
+  return `${site.url}${path.endsWith("/") ? path : `${path}/`}`;
+}
 
 /** Core brand language, reused across the site. */
 export const brand = {
@@ -661,8 +668,8 @@ export const serviceAreas: ServiceArea[] = [
   },
 ];
 
-/** Google rating, pulled from the Google Business Profile. */
-export const googleRating = { score: "5.0", count: 170 };
+/** Google rating, pulled from the Google Business Profile. label is the rounded figure for badges. */
+export const googleRating = { score: "5.0", count: 206, label: "200+" };
 
 /** Real, verbatim 5-star reviews from the Google Business Profile. */
 export const testimonials = [

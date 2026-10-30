@@ -41,7 +41,7 @@ export async function generateMetadata({
   if (!track || !town) return {};
   return {
     title: landingTitle(track, town),
-    description: `${track.name} in ${town.city}, WI by an ISA Certified Arborist. ${track.promise} No-cost assessment, call ${site.phone}.`,
+    description: `${track.meta(town)} ${track.promise} No-cost assessment, call ${site.phone}.`,
     alternates: { canonical: `${landingPath(track.slug, town.slug)}/` },
   };
 }
@@ -103,7 +103,7 @@ export default async function LandingPage({ params }: PageProps<"/[track]/[town]
             <div>
               <Reveal>
                 <Eyebrow>
-                  {track.short} for {town.city} homeowners
+                  {track.noun} for {town.city} homeowners
                 </Eyebrow>
               </Reveal>
               <Reveal delay={0.08}>
@@ -199,7 +199,7 @@ export default async function LandingPage({ params }: PageProps<"/[track]/[town]
         <Container>
           <SectionHeading
             eyebrow="What to expect"
-            title={`How ${track.short.toLowerCase()} works with us.`}
+            title={`How ${track.noun.toLowerCase()} works with us.`}
           />
           <RevealGroup className="mt-12 grid gap-5 md:grid-cols-3" stagger={0.08}>
             {landingSteps.map((step) => (
@@ -217,7 +217,7 @@ export default async function LandingPage({ params }: PageProps<"/[track]/[town]
         </Container>
       </section>
 
-      <ReviewPicks reviews={reviews} title={`What neighbors say about our ${track.short.toLowerCase()}.`} />
+      <ReviewPicks reviews={reviews} title={`What neighbors say about our ${track.noun.toLowerCase()}.`} />
 
       {/* request + direct line */}
       <section id="request" className="scroll-mt-24 bg-paper py-16 sm:py-24">

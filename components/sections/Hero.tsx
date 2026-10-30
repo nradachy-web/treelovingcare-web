@@ -26,7 +26,9 @@ export function Hero() {
       <div className="mx-auto w-full max-w-6xl px-5 pb-14 pt-32 sm:px-8 sm:pb-20 sm:pt-40">
         <div className="max-w-3xl">
           <Reveal>
-            <Eyebrow tone="cream">Tree care across {site.regionShort}</Eyebrow>
+            <Eyebrow tone="cream" className="text-balance">
+              Tree service and certified arborist care in Viroqua, WI and the Driftless Region
+            </Eyebrow>
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -72,7 +74,7 @@ export function Hero() {
                     <Star key={i} className="size-4 text-leaf-bright" />
                   ))}
                 </span>
-                {googleRating.score} on Google · {googleRating.count}+ reviews
+                {googleRating.score} on Google · {googleRating.label} reviews
               </span>
             </div>
           </Reveal>

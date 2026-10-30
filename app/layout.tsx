@@ -22,7 +22,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name}, ISA Certified Arborists in ${site.regionShort}`,
+    default: `Tree Service & ISA Certified Arborist in Viroqua, WI, ${site.name}`,
     template: `%s, ${site.name}`,
   },
   description: site.description,

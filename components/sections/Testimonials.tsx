@@ -25,7 +25,7 @@ export function Testimonials() {
                 ))}
               </span>
               <span className="text-sm text-cream/70">
-                {googleRating.count}+ Google reviews
+                {googleRating.label} Google reviews
               </span>
             </div>
           </Reveal>

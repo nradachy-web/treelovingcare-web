@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { services, serviceAreas, site } from "@/lib/site";
+import { pageUrl, services, serviceAreas } from "@/lib/site";
 import { landingPath, landingRoutes } from "@/lib/landing";
 
 export const dynamic = "force-static";
@@ -17,25 +17,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticPaths.map((p) => ({
-      url: `${site.url}${p.path}`,
+      url: pageUrl(p.path),
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: p.priority,
     })),
     ...services.map((s) => ({
-      url: `${site.url}/services/${s.slug}`,
+      url: pageUrl(`/services/${s.slug}`),
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
     ...serviceAreas.map((a) => ({
-      url: `${site.url}/service-areas/${a.slug}`,
+      url: pageUrl(`/service-areas/${a.slug}`),
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
     ...landingRoutes.map((r) => ({
-      url: `${site.url}${landingPath(r.track, r.town)}`,
+      url: pageUrl(landingPath(r.track, r.town)),
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.8,

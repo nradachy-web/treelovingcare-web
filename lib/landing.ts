@@ -9,7 +9,7 @@
  * Every fact must already be true elsewhere on the site: no prices, no
  * response-time promises beyond 24/7 storm service, no invented history.
  */
-import { brand, faqs as siteFaqs, plan, site, testimonials, type ServiceIcon } from "@/lib/site";
+import { brand, faqs as siteFaqs, googleRating, plan, site, testimonials, type ServiceIcon } from "@/lib/site";
 
 export type LandingTown = {
   slug: string;
@@ -21,7 +21,10 @@ export type LandingTown = {
   trees: string;
   /** property and access character, noun phrase */
   access: string;
-  /** distance from the Viroqua shop, qualitative, lowercase clause */
+  /**
+   * distance from the Viroqua shop, qualitative, lowercase clause. Must read
+   * after both "Serving {city}," and "{city} is".
+   */
   reach: string;
   /** slugs of nearby landing towns, for cross-links */
   nearby: string[];
@@ -43,11 +46,11 @@ export const landingTowns: LandingTown[] = [
     slug: "onalaska",
     city: "Onalaska",
     county: "La Crosse County",
-    setting: "lakeside neighborhoods above Lake Onalaska",
+    setting: "a city of lakeside neighborhoods above Lake Onalaska",
     trees:
       "wooded subdivisions with big shade trees planted decades ago, and shoreline cottonwoods and willows",
     access: "sloped lots, decks and docks to protect, and driveways that don't fit a big truck",
-    reach: "up the river from our shop, about a half hour",
+    reach: "about a half hour up the river from our Viroqua shop",
     nearby: ["la-crosse", "west-salem", "coon-valley"],
   },
   {
@@ -67,7 +70,7 @@ export const landingTowns: LandingTown[] = [
     setting: "our home base and the Vernon County seat",
     trees: "old shade trees along residential streets, farmstead windbreaks, and woodlots on the ridges",
     access: "everything from small in-town lots to farms and hobby acreage",
-    reach: "we're based right here at 102 Western Ave",
+    reach: "home to our shop at 102 Western Ave",
     nearby: ["westby", "la-farge", "coon-valley", "de-soto"],
   },
   {
@@ -77,7 +80,7 @@ export const landingTowns: LandingTown[] = [
     setting: "a ridge-top town with deep Norwegian roots",
     trees: "mature street trees, church and school grounds, and farm shelterbelts on the ridge",
     access: "open, windy ridge sites where storm damage shows up first",
-    reach: "just a few minutes up the road from our shop",
+    reach: "just a few minutes up the road from our Viroqua shop",
     nearby: ["viroqua", "coon-valley", "stoddard"],
   },
   {
@@ -124,7 +127,7 @@ export const landingTowns: LandingTown[] = [
     slug: "gays-mills",
     city: "Gays Mills",
     county: "Crawford County",
-    setting: "apple orchard country on the Kickapoo River",
+    setting: "a village in apple orchard country on the Kickapoo River",
     trees: "orchard-edge trees, river-bottom hardwoods, and shade trees around older homes",
     access: "hillside and floodplain lots, orchard rows, and rural driveways",
     reach: "a short drive south of Viroqua",
@@ -139,6 +142,8 @@ export type LandingTrack = {
   /** H1: "{name} in {City}, Wisconsin" */
   name: string;
   short: string;
+  /** sentence-case noun for running copy: "How {noun} works with us." */
+  noun: string;
   /** existing service page this track feeds, used for the breadcrumb + hub link */
   hub: { href: string; label: string };
   icon: ServiceIcon;
@@ -148,6 +153,8 @@ export type LandingTrack = {
   inset: string;
   /** full-width photo band mid-page */
   band: string;
+  /** opening sentence of the meta description */
+  meta: (t: LandingTown) => string;
   /** hero subtitle */
   promise: string;
   /** four short trust points under the lead copy */
@@ -160,7 +167,7 @@ export type LandingTrack = {
   faqs: (t: LandingTown) => LandingFaq[];
 };
 
-const RATING = `5.0 stars on Google, ${170} reviews`;
+const RATING = `${googleRating.score} stars on Google, ${googleRating.count} reviews`;
 const siteFaq = (q: string) => siteFaqs.find((f) => f.q === q)!;
 
 export const landingTracks: LandingTrack[] = [
@@ -168,12 +175,14 @@ export const landingTracks: LandingTrack[] = [
     slug: "tree-removal",
     name: "Tree Removal",
     short: "Tree Removal",
+    noun: "Tree removal",
     hub: { href: "/services/tree-removal", label: "Tree Removal" },
     icon: "removal",
     image: "/photos/services/removal-2.jpg",
     imageAlt: "A Tree Loving Care climber dismantling a large tree in sections above a home",
     inset: "/photos/services/removal-1.jpg",
     band: "/photos/gallery/gallery-31.jpg",
+    meta: (t) => `Tree removal in ${t.city}, WI, led by an ISA Certified Arborist.`,
     promise: "Safe, careful tree removal, with every option explained first.",
     points: ["ISA Certified Arborist on every job", "Fully insured", "No-cost first look", RATING],
     lead: (t) =>
@@ -218,18 +227,20 @@ export const landingTracks: LandingTrack[] = [
     slug: "tree-trimming",
     name: "Tree Trimming & Pruning",
     short: "Trimming & Pruning",
+    noun: "Tree trimming",
     hub: { href: "/services/tree-pruning-trimming", label: "Tree Pruning & Trimming" },
     icon: "pruning",
     image: "/photos/gallery/gallery-27.jpg",
     imageAlt: "An arborist making a careful pruning cut in a mature shade tree",
     inset: "/photos/services/lift-1.jpg",
     band: "/photos/gallery/gallery-26.jpg",
+    meta: (t) => `Tree trimming and pruning in ${t.city}, WI, led by an ISA Certified Arborist.`,
     promise: "Pruning that makes trees safer and healthier, not just shorter.",
     points: ["ISA Certified Arborist-led cuts", "No topping, ever", "Fully insured", RATING],
     lead: (t) =>
       `Tree trimming in ${t.city} is mostly about ${t.trees}: limbs over roofs and driveways, deadwood, and trees that were never pruned when they were young. Every cut is made by or under an ISA Certified Arborist, based on how the tree will respond, so you get clearance and safety without the decay and weak regrowth that topping causes.`,
     signals: {
-      heading: (t) => `Signs a ${t.city} tree needs pruning`,
+      heading: (t) => `Signs a tree in ${t.city} needs pruning`,
       items: [
         "A limb is growing over your house, garage, or driveway",
         "Dead, damaged, or poorly attached branches",
@@ -268,12 +279,14 @@ export const landingTracks: LandingTrack[] = [
     slug: "arborist",
     name: "ISA Certified Arborist",
     short: "Certified Arborist",
+    noun: "Certified arborist care",
     hub: { href: "/services/consultations", label: "Consultations" },
     icon: "consultation",
     image: "/photos/services/assessment-1.jpg",
     imageAlt: "An ISA Certified Arborist inspecting a mature tree for signs of risk",
     inset: "/photos/about/owner-phone-call.jpg",
     band: "/photos/gallery/gallery-10.jpg",
+    meta: (t) => `${site.owner.name}, ${site.owner.credential}, serving ${t.city}, WI.`,
     promise: "A certified arborist's honest read on your trees, before you spend a dollar.",
     points: [
       `${site.owner.name}, ${site.owner.credential}`,
@@ -316,16 +329,18 @@ export const landingTracks: LandingTrack[] = [
     slug: "stump-grinding",
     name: "Stump Grinding",
     short: "Stump Grinding",
+    noun: "Stump grinding",
     hub: { href: "/services/stump-grinding", label: "Stump Grinding" },
     icon: "stump",
     image: "/photos/services/stump-1.jpg",
     imageAlt: "A ground-down stump leaving clean, level soil ready to reuse",
     inset: "/photos/services/chipping-1.jpg",
     band: "/photos/about/company-truck-jobsite.jpg",
+    meta: (t) => `Stump grinding in ${t.city}, WI from an ISA Certified Arborist-led crew.`,
     promise: "Finish the job and reclaim the space.",
     points: ["Clean, level finish", "Ready to seed or replant", "Fully insured", RATING],
     lead: (t) =>
-      `Whether we removed the tree or someone else did, stump grinding in ${t.city} turns a tripping hazard and a mowing obstacle back into usable yard. Around ${t.city}, ${t.access} shape how we bring the grinder in, and we'll leave the area clean and ready to seed, mulch, or replant.`,
+      `Whether we removed the tree or someone else did, stump grinding in ${t.city} turns a tripping hazard and a mowing obstacle back into usable yard. Around ${t.city} we see ${t.access}, so we plan how the grinder gets in, then leave the area clean and ready to seed, mulch, or replant.`,
     signals: {
       heading: (t) => `Why ${t.city} homeowners grind stumps`,
       items: [
@@ -365,12 +380,14 @@ export const landingTracks: LandingTrack[] = [
     slug: "emergency-tree-service",
     name: "Emergency & Storm Tree Service",
     short: "Storm & Emergency",
+    noun: "Emergency tree service",
     hub: { href: "/services/storm-emergency-tree-work", label: "Storm & Emergency Tree Work" },
     icon: "emergency",
     image: "/photos/services/emergency-1.jpg",
     imageAlt: "A Tree Loving Care crew clearing a storm-damaged tree",
     inset: "/photos/services/emergency-2.jpg",
     band: "/photos/gallery/gallery-29.jpg",
+    meta: (t) => `Emergency and storm tree service in ${t.city}, WI, led by an ISA Certified Arborist.`,
     promise: "24/7 response when a storm puts a tree on your home, car, or driveway.",
     points: ["24/7 emergency response", "ISA Certified Arborist judgment", "Fully insured", RATING],
     lead: (t) =>
@@ -414,16 +431,18 @@ export const landingTracks: LandingTrack[] = [
     slug: "tree-service",
     name: "Tree Service",
     short: "Tree Service",
+    noun: "Tree service",
     hub: { href: "/services", label: "Services" },
     icon: "consultation",
     image: "/photos/hero/hero-drone-rooftop-canopy.jpg",
     imageAlt: "Tree Loving Care crew working in a mature canopy above a home",
     inset: "/photos/about/team-four-crew-summer.jpg",
     band: "/photos/gallery/gallery-28.jpg",
+    meta: (t) => `Tree service in ${t.city}, WI, led by an ISA Certified Arborist.`,
     promise: "One certified crew for removal, trimming, stumps, storms, and planting.",
     points: ["ISA Certified Arborist-led", "Family-owned, veteran-operated", "Fully insured", RATING],
     lead: (t) =>
-      `Searching for tree service near ${t.city}? Tree Loving Care is a family-owned, veteran-operated tree service based in Viroqua, ${t.reach}. We work on ${t.trees}, and every job is led by an ISA Certified Arborist, so you get one honest recommendation instead of a quote for whatever is easiest to sell.`,
+      `Searching for tree service near ${t.city}? Tree Loving Care is a family-owned, veteran-operated tree service serving ${t.city}, ${t.reach}. We work on ${t.trees}, and every job is led by an ISA Certified Arborist, so you get one honest recommendation instead of a quote for whatever is easiest to sell.`,
     signals: {
       heading: (t) => `What we do in ${t.city}`,
       items: [
@@ -443,7 +462,7 @@ export const landingTracks: LandingTrack[] = [
     faqs: (t) => [
       {
         q: `Do you serve ${t.city}?`,
-        a: `Yes. We're based in Viroqua and work across ${t.county} and the Driftless Region, ${t.reach}.`,
+        a: `Yes. ${t.city} is ${t.reach}, and we work across ${t.county} and the Driftless Region.`,
       },
       siteFaq("Is the first visit free?"),
       siteFaq("Are you licensed and insured?"),

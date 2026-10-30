@@ -1,4 +1,4 @@
-import { googleRating, services, serviceAreas, site } from "@/lib/site";
+import { googleRating, pageUrl, services, serviceAreas, site } from "@/lib/site";
 
 /** LocalBusiness / TreeService schema for the homepage. */
 export function localBusinessSchema() {
@@ -8,7 +8,7 @@ export function localBusinessSchema() {
     "@id": `${site.url}/#business`,
     name: site.legalName,
     description: site.description,
-    url: site.url,
+    url: pageUrl("/"),
     telephone: site.phone,
     email: site.email,
     image: `${site.url}/og.jpg`,
@@ -33,7 +33,7 @@ export function localBusinessSchema() {
       reviewCount: googleRating.count,
       bestRating: "5",
     },
-    sameAs: [site.facebook],
+    sameAs: [site.googleMaps, site.facebook, site.instagram],
     knowsAbout: services.map((s) => s.name),
     makesOffer: services.map((s) => ({
       "@type": "Offer",
@@ -53,7 +53,7 @@ export function serviceSchema(slug: string) {
     serviceType: service.name,
     provider: { "@id": `${site.url}/#business` },
     areaServed: serviceAreas.map((a) => ({ "@type": "City", name: `${a.city}, WI` })),
-    url: `${site.url}/services/${service.slug}`,
+    url: pageUrl(`/services/${service.slug}`),
   };
 }
 
@@ -65,7 +65,7 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: `${site.url}${item.url}`,
+      item: pageUrl(item.url),
     })),
   };
 }
